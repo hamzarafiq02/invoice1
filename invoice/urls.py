@@ -5,5 +5,5 @@ from .views import *
 urlpatterns = [
     path('invoice/', views.invoice_list),
     path('invoice/<pk>', views.invoice_detail),
-    path('pdf/', Genratepdf.as_view()),
+    path('pdf/<pk>', Genratepdf.as_view()),
 ]

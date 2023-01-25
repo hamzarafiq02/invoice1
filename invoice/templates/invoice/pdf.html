@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static%}
 <html>
   <head>
     <meta charset="utf-8" />
@@ -21,6 +21,17 @@
         <div class="card-header">
           <h3>Invoice Data Report - {{ today | date:"d/m/y" }}</h3>
         </div>
+        <div id="logo">
+          <img src="{% static 'img/logo-1.png' %}" style="width: 134px; height:116px"> 
+        </div>
+        <div id="company">
+          <h1 class="name">99 technologies.ai</h1>
+          <div><h4>Address:</h4>99 Technologies, Pvt, Ltd.
+            Floors 1 & 2, Plaza 117
+            Civic Center, Phase 4, Bahria Town, Islamabad</div>
+          <div><h4>Phone Number:</h4>+92332-5991-722</div>
+          <div><h4>Email:</h4><a href="usman@99technologies.ai">usman@99technologies.ai</a></div>
+          </div>
         <table class="table">
           <head>
             <tr>
@@ -31,17 +42,15 @@
               <th>paid</th>
             </tr>
           </head>
-          <tbody>
-            {% for Data in invoice_objs %}
+            {% comment %} {% for Data in invoice_objs %} {% endcomment %}
             <tr>
-              <th scope="row">{{forloop.counter}}</th>
-              <td class="text-center">{{Data.name}}</td>
-              <td class="text-center">{{Data.description}}</td>
-              <td class="text-center">{{Data.total}}</td>
-              <td class="text-center">{{Data.paid}}</td>
+              <th scope="text-center">{{invoice_objs.id}}</th>
+              <td class="text-center">{{invoice_objs.name}}</td>
+              <td class="text-center">{{invoice_objs.description}}</td>
+              <td class="text-center">{{invoice_objs.total}}</td>
+              <td class="text-center">{{invoice_objs.paid}}</td>
             </tr>
-            {% endfor %}
-          </tbody>
+            {% comment %} {% endfor %} {% endcomment %}
         </table>
       </div>
     </div>

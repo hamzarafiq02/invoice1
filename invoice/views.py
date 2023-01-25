@@ -8,6 +8,7 @@ from invoice.models import Invoice
 from invoice.serializers import InvoiceSerializer
 from rest_framework import permissions
 from rest_framework.decorators import permission_classes
+import random
  
 
 @api_view(['GET', 'POST'])
@@ -50,9 +51,14 @@ def invoice_detail(request, pk):
 
 
 
+
+
+
+
+
 class Genratepdf(APIView):
-    def get(self, request):
-        invoice_objs = Invoice.objects.all()
+    def get(self, request, pk):
+        invoice_objs = Invoice.objects.get(pk=pk)
         params = {
             'today': datetime.date.today(),
             'invoice_objs': invoice_objs
