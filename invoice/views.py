@@ -1,6 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from .helpers import save_pdf
+import datetime
 from invoice.models import Invoice
 from invoice.serializers import InvoiceSerializer
 from rest_framework import permissions
@@ -44,6 +47,23 @@ def invoice_detail(request, pk):
     elif request.method == 'DELETE':
         invoice.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+
+class Genratepdf(APIView):
+    def get(self, request):
+        invoice_objs = Invoice.objects.all()
+        params = {
+            'today': datetime.date.today(),
+            'invoice_objs': invoice_objs
+        }
+        file_name , status = save_pdf(params)
+
+        if not status:
+            return Response({'status': 400})
+
+
+        return Response({'status': 200 , 'path': f'/media/{file_name}.pdf'})
 
 
 
