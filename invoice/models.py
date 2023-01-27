@@ -9,6 +9,8 @@ class Invoice(models.Model):
     description = models.TextField(blank=True, default='')
     total = models.DecimalField(max_digits=7, decimal_places=2)
     paid = models.DecimalField(max_digits=7, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.name

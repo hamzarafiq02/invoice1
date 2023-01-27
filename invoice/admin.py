@@ -4,6 +4,6 @@ from .models import Invoice
 # Register your models here.
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'description', 'total', 'paid']
+    list_display = ['id', 'name', 'description', 'total', 'paid', 'created']
 class Meta:
         ordering = ['id']
